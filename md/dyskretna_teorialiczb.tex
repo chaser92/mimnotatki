@@ -1,0 +1,140 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% Example of the Memoir class, an alternative to the default LaTeX classes such as article and book, with many added features built into the class itself.
+
+%\documentclass[12pt,a4paper]{memoir} % for a long document
+\documentclass[12pt,a4paper,article]{memoir} % for a short document
+\usepackage{polski}
+\usepackage[utf8]{inputenc} % set input encoding to utf8
+
+% Don't forget to read the Memoir manual: memman.pdf
+
+%%% Examples of Memoir customization
+%%% enable, disable or adjust these as desired
+
+%%% PAGE DIMENSIONS
+% Set up the paper to be as close as possible to both A4 & letter:
+\settrimmedsize{11in}{210mm}{*} % letter = 11in tall; a4 = 210mm wide
+\setlength{\trimtop}{0pt}
+\setlength{\trimedge}{\stockwidth}
+\addtolength{\trimedge}{-\paperwidth}
+\settypeblocksize{*}{\lxvchars}{1.618} % we want to the text block to have golden proportionals
+\setulmargins{50pt}{*}{*} % 50pt upper margins
+\setlrmargins{*}{*}{1.618} % golden ratio again for left/right margins
+\setheaderspaces{*}{*}{1.618}
+\checkandfixthelayout 
+% This is from memman.pdf
+
+%%% \maketitle CUSTOMISATION
+% For more than trivial changes, you may as well do it yourself in a titlepage environment
+\pretitle{\begin{center}\sffamily\huge\MakeUppercase}
+\posttitle{\par\end{center}\vskip 0.5em}
+
+%%% ToC (table of contents) APPEARANCE
+\maxtocdepth{subsection} % include subsections
+\renewcommand{\cftchapterpagefont}{}
+\renewcommand{\cftchapterfont}{}     % no bold!
+
+%%% HEADERS & FOOTERS
+\pagestyle{ruled} % try also: empty , plain , headings , ruled , Ruled , companion
+
+%%% CHAPTERS
+\chapterstyle{hangnum} % try also: default , section , hangnum , companion , article, demo
+
+\renewcommand{\chaptitlefont}{\Huge\sffamily\raggedright} % set sans serif chapter title font
+\renewcommand{\chapnumfont}{\Huge\sffamily\raggedright} % set sans serif chapter number font
+
+%%% SECTIONS
+\hangsecnum % hang the section numbers into the margin to match \chapterstyle{hangnum}
+\maxsecnumdepth{subsection} % number subsections
+
+\setsecheadstyle{\Large\sffamily\raggedright} % set sans serif section font
+\setsubsecheadstyle{\large\sffamily\raggedright} % set sans serif subsection font
+
+%% END Memoir customization
+
+\title{Teoria liczb}
+\author{}
+\date{} % Delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+\tableofcontents* % the asterisk means that the contents itself isn't put into the ToC
+
+\chapter{Dzielenie z resztą}
+\[ \delta > 0 => \forall a \exists ! q,r: a = b \dot q + r, 0 \leq r < b \]
+Rozważmy zbiór:
+D. $ A = {a - b \dot t, t \in Z } [zbior_oraz] N  \neq [zbiorpusty], {min} A = r $ 
+Def. Wielokrotnością liczby $ b \neq 0 $ i $ a \neq b \dot c $, to a jest wielokrotnością b.
+Jeśli przy tym $ b > 0 $ to b jest dzielnikiem a. (ozn $ b | a $) \\
+\section{Liczby pierwsze}
+Jeśli jedynym dzielnikiem $a >1$ są $1$ i $a$, to ta liczba nazywa się pierwsza. \\
+W szczególności 1 i liczby ujemne nie są pierwsze.
+\section{Największy wspólny dzielnik}
+$a^2 + b^2 \neq 0$, ale jest też definicja odwołująca się do relacji podzielności, bez zakładania, że istnieje relacja porządku.
+Jeśli $s$ jest w.d. liczb $a$ i $b (d | a,b)$ i $(d | a,b => d|s)$, to $s = NWD(a,b)$. \\
+\textbf{Fakt:} NWD(a,b) istnieje i jest jednoznacznie wyznaczony.
+\subsection{Ideał}
+\textbf{Ideał} to niepusty zbiór X taki, że $ X [zawarty-rowny] Z $ zamknięty na +, - \\
+\textbf{Podfakt} Każdy ideał w $Z$ jest generowany przez jeden element $a$, to znaczy jest \textbf{ideałem głównym}, czyli jest postaci $a \cdot x: x \in Z$
+\subsection{Dowód podfaktu ideału głównego dla Z}
+${0}$ to dobry ideał choć nieciekawy. Ale jeśli $X \neq {0}$, niech $ b = min X [andzbiorowy] N_+ $. No to teraz $a$ jest generatorem. Dlaczego? Przypuśćmy, że czegoś nie generuje, tzn. są elementy które nie są postaci $ ax $, to dzielimy $y$ mod $a$, ta reszta z dzielenia jest elementem ideału, a jest mniejsza niż $a$. Co jest sprzeczne z założeniami xD
+\subsection{Algorytm Euklidesa i NWD - ciąg dalszy ideałów}
+Niech $X = {ax + by, x,y \in Z}$ - ideał. Jeśli weźmiemy generator tego ideału, to on będzie dobry. $X$ ma generator $s$, który jest tej postaci, tj. $s=ax_0 + by_0 $. Pokażemy, że $s$ ma te 2 własności. $s|a,b$ bo $a,b \in X$. $d|a,b => d|ax_0+bx_0$.
+NWD jest kombinacją liniową tych liczb, których jest wspólnym dzielnikiem. Znany jest wzór rekurencyjny na NWD (algorytm Euklidesa). 
+\[NWD(a,b) = \cases{a b=0} {NWD(b,a mod b) b>0} TODO nie dziala cases \]
+\subsection{Rozszerzony algorytm Euklidesa}
+Oprócz NWD oblicza dodatkowo $x, y$, t. że $NWD (a,b) = ax + by$. \\
+$b = 0, => (x,y) = (1,0) $ (a razy 1 plus b razy 0 równa się NWD). \\
+Jeśli $ b > 0 $ to z poprzedniego wywołania rekurencyjnego znamy $x', y'$ takie, że $NWD(b, a mod b) = bx' + (a mod b)y'$. A $ a mod b $ to nic innego jak $a - b \cdot TODO podloga{\frac{a}{b}}$. Zatem y' = moje nowe x, a $a - b \cdot TODO podloga{\frac{a}{b}}$ - moje nowe y. \\
+Przykład: TODO
+tabelka{{a}{b}{x}{y}}
+{7}{5}{-2}{3}
+{5}{2}{1}{-2}
+{2}{1}{0}{1}
+{1}{0}{1}{0}
+Umiesz już policzyć nie tylko NWD, ale też te współczynniki x, y. Nieźle! Tak trzymać! \\
+Def. $ a \perp b \Leftrightarrow NWD(a,b) = 1 $ \\ a,  względnie pierwsze \\
+\textbf{Fakt} $a|bc, a \perp b \Rightarrow a | c. $
+\textbf{Dowód} $ a \perp b \rightarrow \exists x,y : 1 = ax+by \rightarrow c = acx + bcy $ - prawa strona jest podzielna przez a, więce lewa też. 
+\subsection{Podstawowe twierdzenie arytmetyki}
+Każda liczba $a>0$ ma rozkład $a=\prod_{i=1}^{m} b_i$, gdzie$ b_i $- pierwsza jednoznaczna z dokładnością do kolejności czynników. \\
+\textbf{Dowód} Istnienie oczywiste - indukcja. \\
+\textbf{Jednoznaczność}:
+indukcja: $a=1 \rightarrow $ok. \\
+Niech $ a=b_1 \cdot ... \cdot b_m = c_1 \cdot ... \cdot c_k $. Wystarczy pokazać, że $b_1 = c_1$ i skorzystać z jednoznaczności rozkładu liczby $\frac{a}{b_1}$. Przypuśćmy, że tak nie jest i załóżmy, że $b_1 < c_1 \rightarrow b_1 \perp c_1 \rightarrow \exists x, y: 1 = b_1 x + c_1 y $.
+ Pomnożymy to stronami przez $c_2 \cdot ... \cdot c_k $. $b_1$ dzieli prawą stronę, więc i lewą.
+$ b_1 | c_2 \cdot ... \cdot c_k \rightarrow^{(*)} b_1 | c_i$ dla pewnego $i \in {{} 2 ... k{}} $ \\
+\textbf{Przykład}:  \[ a = {p_1}^{a_1} \cdot ... \cdot {p_k}^{a_k} \] 
+\[ a = {p_1}^{b_1} \cdot ... \cdot {p_k}^{b_k} \] 
+\[ (\alpha_i, \beta_i \geq 0 \]
+\[ b | a \leftrightarrow \beta_i \leq \alpha_i \forall_i \]
+\[ a \perp b \leftrightarrow min (\alpha_i, \beta_i) = 0 \forall i \]
+\[ NWD (a,b) = \prod_{i} min(\alpha_i, \beta_i) \]
+\subsection{Największa wspólna wielokrotność}
+$ NWW (a,b) = s,$ t, że $a,b | s$ i $(a,b|d \rightarrow s | d)$.
+\textbf{Definicja} $NWW (a,b) = \frac{a \cdot b}{NWD(a,b)} = \prod_i {p_i}^{max(\alpha_i, \beta_i)} $ \\
+\section{Kongruencja - przystawanie} 
+Określmy $n > 0$ i nazwijmy ją \em modułem kongruencji \em. \\ 
+Wtedy $a === b (mod n) \leftrightarrow n | a - b$. Ten symbol czytamy: $a$ jest \em kongruentne \em z $b$. Dla dowolnie przyjętego $n$ kongruentność jest relacją równoważności. Klasy abstrakcji określa zbiór dzielenia przez $n$ - $x(n+r)$ dla $r \in {{}0,...,n-1{}} $. \\
+\textbf {Własności relacji kongruencji}. Kongruencje przy tym samym module można dodawać, odejmować i mnożyć stronami. Czyli $ a \equiv b (mod n), c \equiv d (mod n) \rightarrow a_i a + - * c \equiv b + - * d (mod n). $ \\
+\textbf {Przykład} $ ac - bd = ac-bc + bc-bd = (a-b)\cdot c + b \cdot (c-d)$ (a gdzie tu ta kongruencja cała ?) \\
+Co z dzieleniem stronami? Otóż o ile $ d \perp b, ad \equiv bd $ (mod $n$) $ \rightarrow a \equiv b $ (mod $n$) \\
+$n | d (a-b) \rightarrow n | a - b$ \\
+Bez dodatkowych założeń, jeśli $ad \perp bd$ mod($nd$) $\leftrightarrow a \equiv b$ (mod $n$). \\
+\textbf {Jak zamienić układ 2 kongruencji z względnie pierwszymi modułami na jedną?} Jeśli $m \perp n, a \equiv (b mod (m \cdot n) $, to $ a \equiv b (mod n), a \equiv b (mod m) $. \\
+\textbf{Definicja} $ m \cdot n | x \leftrightarrow n | x ORAZ m | x $  
+\subsection{Chińskie twierdzenie o resztach}
+$n_1, ... n_k$ - parami względnie pierwsze \\
+ozn. $n = n_1 \cdot ... \cdot n_k $ \\
+\[ \forall a_1, ..., a_k \exists ! 0 \leq a < n : a \equiv a_i TODO (mod n_i)\] dla $i=1 ... k$ \\
+\textbf {Przykład} $ n_i = 7, 11, 13; a_i = 5, 3, 1 \rightarrow a = 817 $. \\
+\textbf{Dowód niekonstruktywny} $ {{}0 ... n-1 {}} \rightarrow <a mod n_1, ..., a mod n_k> $. \\
+Wystarczy pokazać, że jeśli $ a \not\equiv b (mod n) $ to $a$ i $b$ mają różne wektory. \\
+Z (**) wynika, że $ a \equiv (mod n_i) i \in {{}1...k{}} \leftrightarrow (mod n_1 \cdot ... n_k) \\
+ \end{document}
+
+

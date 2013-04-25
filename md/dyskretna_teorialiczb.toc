@@ -1,0 +1,11 @@
+\contentsline {chapter}{\chapternumberline {1}Dzielenie z reszt\IeC {\k a}}{2}
+\contentsline {section}{\numberline {1.1}Liczby pierwsze}{2}
+\contentsline {section}{\numberline {1.2}Najwi\IeC {\k e}kszy wsp\IeC {\'o}lny dzielnik}{2}
+\contentsline {subsection}{\numberline {1.2.1}Idea\IeC {\l }}{2}
+\contentsline {subsection}{\numberline {1.2.2}Dow\IeC {\'o}d podfaktu idea\IeC {\l }u g\IeC {\l }\IeC {\'o}wnego dla Z}{3}
+\contentsline {subsection}{\numberline {1.2.3}Algorytm Euklidesa i NWD - ci\IeC {\k a}g dalszy idea\IeC {\l }\IeC {\'o}w}{3}
+\contentsline {subsection}{\numberline {1.2.4}Rozszerzony algorytm Euklidesa}{3}
+\contentsline {subsection}{\numberline {1.2.5}Podstawowe twierdzenie arytmetyki}{4}
+\contentsline {subsection}{\numberline {1.2.6}Najwi\IeC {\k e}ksza wsp\IeC {\'o}lna wielokrotno\IeC {\'s}\IeC {\'c}}{4}
+\contentsline {section}{\numberline {1.3}Kongruencja - przystawanie}{4}
+\contentsline {subsection}{\numberline {1.3.1}Chi\IeC {\'n}skie twierdzenie o resztach}{5}

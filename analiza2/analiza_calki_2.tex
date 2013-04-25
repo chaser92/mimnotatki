@@ -107,7 +107,13 @@ Jeśli dla każdego $ x \in [a,b) $
 \[ 0 \leq f_1(x) \leq f_2(x) \]
 oraz $ \int_a^b f_2 (t)dt $ jest zbieżna, to $\int_a^b f_1 (t)$ też jest zbieżna. \\
 Dowód: \\
-Dzięki założeniu istnieją obie całki niewłaściwe.
-
-
+Dzięki założeniu istnieją obie całki niewłaściwe. Pewnie jest w skrypcie. No i tak jak w kryterium porównawczym. Można też sformułować podobne kryterium asymptotyczne - w jednym z zadań; więc raczej to nas nie obchodzi za bardzo.
+\subsection{Kryterium Dirichleta}
+W szeregach chcieliśmy zbieżność szeregów zadanych iloczynem. Teza brzmiała: $ \sum_{n=1}^{\infty} a_n b_n $ - zbieżny, o ile $ <a_n> $ monotoniczny i zbieżny do 0, oraz $\forall_n | \sum_{k=1}^n b_k | \leq M $, dla pewnego M. Natomiast w przypadku całek: \\
+\[ f; g : [a; +\inf ) -> R \]
+1. $f$ jest malejąca \\
+2. $\lim_{x->+\inf} f(x) = 0 $ \\
+3. $ \forall_{r \in [a; +\infty)} |\int_{[a;r]} g(x)dx| < M $ \\
+Wówczas $ \int_n^{+\inf} f(x)g(x)dx$ jest zbieżna.
+Dowodu brak - ale dowód się wyprowadza z pomocą przekształcenia Abela (w tw. z szeregów). Zamiast tego stosuje się jakieś twierdzenie o wartości średniej, którego nie znamy. 
 \end{document}
