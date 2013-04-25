@@ -1,0 +1,113 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% Example of the Memoir class, an alternative to the default LaTeX classes such as article and book, with many added features built into the class itself.
+
+%\documentclass[12pt,a4paper]{memoir} % for a long document
+\documentclass[12pt,a4paper,article]{memoir} % for a short document
+\usepackage{polski}
+\usepackage[utf8]{inputenc} % set input encoding to utf8
+
+% Don't forget to read the Memoir manual: memman.pdf
+
+%%% Examples of Memoir customization
+%%% enable, disable or adjust these as desired
+
+%%% PAGE DIMENSIONS
+% Set up the paper to be as close as possible to both A4 & letter:
+\settrimmedsize{11in}{210mm}{*} % letter = 11in tall; a4 = 210mm wide
+\setlength{\trimtop}{0pt}
+\setlength{\trimedge}{\stockwidth}
+\addtolength{\trimedge}{-\paperwidth}
+\settypeblocksize{*}{\lxvchars}{1.618} % we want to the text block to have golden proportionals
+\setulmargins{50pt}{*}{*} % 50pt upper margins
+\setlrmargins{*}{*}{1.618} % golden ratio again for left/right margins
+\setheaderspaces{*}{*}{1.618}
+\checkandfixthelayout 
+% This is from memman.pdf
+
+%%% \maketitle CUSTOMISATION
+% For more than trivial changes, you may as well do it yourself in a titlepage environment
+\pretitle{\begin{center}\sffamily\huge\MakeUppercase}
+\posttitle{\par\end{center}\vskip 0.5em}
+
+%%% ToC (table of contents) APPEARANCE
+\maxtocdepth{subsection} % include subsections
+\renewcommand{\cftchapterpagefont}{}
+\renewcommand{\cftchapterfont}{}     % no bold!
+
+%%% HEADERS & FOOTERS
+\pagestyle{ruled} % try also: empty , plain , headings , ruled , Ruled , companion
+
+%%% CHAPTERS
+\chapterstyle{hangnum} % try also: default , section , hangnum , companion , article, demo
+
+\renewcommand{\chaptitlefont}{\Huge\sffamily\raggedright} % set sans serif chapter title font
+\renewcommand{\chapnumfont}{\Huge\sffamily\raggedright} % set sans serif chapter number font
+
+%%% SECTIONS
+\hangsecnum % hang the section numbers into the margin to match \chapterstyle{hangnum}
+\maxsecnumdepth{subsection} % number subsections
+
+\setsecheadstyle{\Large\sffamily\raggedright} % set sans serif section font
+\setsubsecheadstyle{\large\sffamily\raggedright} % set sans serif subsection font
+
+%% END Memoir customization
+
+\title{Analiza II}
+\author{Mariusz Kierski}
+% \date{} 
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+\tableofcontents* % the asterisk means that the contents itself isn't put into the ToC
+
+\chapter{Całki Riemanna i Lebesgue'a}
+\section{Tw. o wartości średniej}
+Jeżeli $b>a$, $f:[a;b]->R$ - ciagła, to istn. $c \in (a;b)$ t. że:
+\[ \int_{[a;b]}f(x)dx = (b-a)f(c) \]
+\section{Całki niewłaściwe}
+Dla całki Riemanna $f : [a;b] -> R$ \\
+co gdy $f:[a;b)->R$? \\
+Dwa przypadki: $ b \in R $ oraz $ b = +\infty $.
+Założenia wstepne dot. całki niewłaściwej:  
+(*) $ \forall_{r \in [a;b)} f |_{[a;r]} $ - całkowalna w sensie Riemanna. \\
+ Definicja \\ 
+(całka niewłaściwa "prawostronnie") - tj. "brakuje" końca przedziału.
+Jeżeli istnieje granica $ lim_{r -> b^{-}} \int_{[a;r]} f(x)dx = G $ to nazywamy ją całką niewłaściwą z $f$ i oznaczamy symbolem $\int_{a}^{b} f(x)dx $
+Całka niewłaściwa jest zbieżna, gdy powyższa granica G istnieje i jest liczbą. \\
+$b = +\infty $: "całka niewłaściwa I rodzaju"\\
+$b \in R $: "całka niewłaściwa II rodzaju"\\
+Analogiczna definicja jest określona dla całki niewłaściwej lewostronnej.
+Do pewnego pojęcia można te pojęcia "mieszać", tj. rozważać sytuację, gdy funkcja jest określona na przedziale obustronnie domkniętym. [obrazek: 1]
+To jeszcze nie jest takie złe - bo funkcja może być określona na dziurawym przedziale. Wtedy trzeba "pomieszać" całki niewłaściwe; chodzi o to, że wprowadza się jakiś punkt pośredni i zastanawiamy się nad sumą c.nw. od c do tego punktu, i z drugiej strony - od tego punktu do $c$. Można udowodnić (przy niewielkich założeniach), że suma tych dwóch całek nie zależy od wyboru punktu $c$. Czyli można rozważać skończoną liczbę takich punktów niewłaściwości, i to właśnie są mieszane całki niewłaściwe.
+\section{Teoria Lebesgue'a}
+Można udowodnić, że f. całkowalne w sensie Riemanna to takie funkcje ograniczone, które mają "nie za wiele" punktów nieciągłości - warunek konieczny i dostateczny na całkowalność w sensie Riemanna. Coś a'la nie musi być ciągła wszędzie, ale wszędzie bez ciągłości to lipa.
+Całka Lebesgue'a jest równa całki w sensie Riemanna dla funkcji całkowalnych w sensie Riemanna. Zachowuje ona [Lebesgue'a] także własności liniowe całek Riemannowych. \\
+Można całkować względem różnych miar. Przykładowo: miara Lebesgue'a - suma długości wszystkich (odcinków? części wykresu?) całek niewłaściwych.
+\section{Zbieżność całek Lebesgue'a}
+Teoria całek Lebesgue'a jest podobna do teorii szeregów, dlatego też interesuje nas pojęcie zbieżności \\
+Przykłady \\
+1. "pozorna niewłaściwość"
+$f : [a;b) -> R$ ale można ją przedłużyć do \\
+$f^{~} : [a;b] -> R $ tak, że $ f^{~} \in R$ \\
+Fakt \\
+Wówczas istnieje $\int_{a}^{b} f(x) dx$ i jest równa $\int[a,b] f^{~}(x)dx $ \\
+2. $ \int_{1}^{+\infty} \frac{1}{x^\alpha} dx $ istnieje $ \forall \alpha > 0 $ i jest zbieżna wtw. $ \alpha > 1 $. Wówczas \[ \int_{1}^{+\inf} \frac{1}{x^\alpha} dx = \frac{1}{\alpha - 1} \]
+Przypomina to zbieżność szeregu Riemanna - podobny warunek zachodził. Jednak wartość sumy szeregu i takiej całki jest oczywiście inna.
+3. $ \int_{-\infty}^{0} e^x = 1 = -\int_{0}^{1} lnx dx $. Ta druga całka nie jest aż tak trywialna, ale Państwo sobie policzą w domu.
+\section{Kryteria zbieżnosci całek Lebesgue'a}
+Będą tylko dwa kryteria. Pierwsze jest uniwersalne, a drugie wyłącznie dla całek na przedziałach nieskończonych.
+\subsection{Kryterium porównawcze całek Lebesgue'a}
+Analogicznie dla kryterium porównawczego szeregów liczbowych; ale dodatkowe założenia. \\
+Załóżmy, że $f_1, f_2 : [a;b) \to R $ - obie spełniają (*).
+Jeśli dla każdego $ x \in [a,b) $
+\[ 0 \leq f_1(x) \leq f_2(x) \]
+oraz $ \int_a^b f_2 (t)dt $ jest zbieżna, to $\int_a^b f_1 (t)$ też jest zbieżna. \\
+Dowód: \\
+Dzięki założeniu istnieją obie całki niewłaściwe.
+
+
+\end{document}
